@@ -232,12 +232,8 @@ define(['./util/async', './util/construct', './util/extend'], function(async, co
   });
 
   extend(Promise, {
-    from: function(value) {
-      if (Promise.isPromise(value)) { return value; }
-      return Promise.resolve(value);
-    },
-
     resolve: function(value) {
+      if (Promise.isPromise(value)) { return value; }
       return new this(function(resolve) {
         resolve(value);
       });
